@@ -6,23 +6,22 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity {
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
-    private Button startTripBtn;
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
+    }
 
-        startTripBtn = findViewById(R.id.btn_start_trip);
-        startTripBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Start Maps Activity
-                Intent mapsInent = new Intent(MainActivity.this, MapsActivity.class);
-                startActivity(mapsInent);
-            }
-        });
+    @OnClick(R.id.btn_start_trip)
+    public void goToMapsScreen(){
+        // Start Maps Activity
+        Intent mapsIntent = new Intent(MainActivity.this, MapsActivity.class);
+        startActivity(mapsIntent);
     }
 }
